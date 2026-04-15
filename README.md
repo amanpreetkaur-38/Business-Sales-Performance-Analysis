@@ -1,116 +1,119 @@
-# Business-Sales-Performance-Analysis
+### Business-Sales-Performance-Analysis
 
-Project Overview
-This project focuses on analyzing business sales data to uncover key insights related to revenue, profit, regional performance, and product category contributions.
-The goal was to transform raw sales data into an interactive dashboard that helps stakeholders:
-Track performance over time
-Identify high/low performing regions
-Understand category-level profitability
-Make data-driven business decisions
+## Project Overview
 
-Problem Statement
-Businesses often struggle with:
-Lack of visibility into regional performance
-Poor understanding of which product categories drive profit vs just revenue
-Difficulty tracking sales trends over time
-No clear insights into growth patterns (MoM, YTD)
-This project solves that by building a centralized performance dashboard.
+This project analyzes business sales data to extract meaningful insights across revenue, profitability, customer behavior, and product performance. The goal is to move beyond raw transactional records and build a clear, structured view of business health — using SQL for data analysis and Power BI for interactive reporting.
 
-Data Cleaning & Preparation (SQL)
-The dataset was cleaned and transformed using SQL. Key steps included:
-Removed duplicate records
-Handled null / missing values
-Standardized date formats
-Created derived columns:
-Year-Month for trend analysis
-Profit calculations
-Aggregated sales metrics
-Ensured data consistency across regions & categories
-Structured data for easy aggregation (GROUP BY, joins, filters)
+---
 
-Key Metrics Created
-Total Sales: 2.27M
-Total Profit: 282.86K
-Total Quantity: 37K
-Average Order Value (AOV): 460.85
-YTD Sales: 724.99K
-MoM Growth: 0.04
+## Problem Statement
 
-Dashboard Visualizations
-1. KPI Cards
-Total Sales, Profit, Quantity, AOV, YTD Sales, MoM Growth
-Gives quick business health snapshot
+Many businesses collect large amounts of sales data but lack the tools or structure to interpret it effectively. This project addresses several common challenges:
 
-2. Sales & Profit by Region
-West → ~0.73M (highest)
-East → ~0.67M
-Central → ~0.50M
-South → ~0.39M
-Identifies strongest and weakest regions
+- Distinguishing which products generate revenue versus actual profit
+- Understanding why certain regions underperform
+- Tracking how sales trends evolve over time
+- Identifying and retaining high-value customers
+- Evaluating whether discount strategies are working as intended
 
-3. Sales Trend (Time Series)
-Monthly trend of Sales & Profit
-Helps detect seasonality and fluctuations
+The solution is a data-driven analysis pipeline paired with a dynamic dashboard that makes these answers accessible at a glance.
 
-4. Quantity by Category
-Office Supplies → 22K (highest)
-Furniture → 7.5K
-Technology → 6.9K
-Shows volume vs value mismatch
+---
 
-5. Profit by Category
-Technology → ~145K (highest)
-Office Supplies → ~120K
-Furniture → ~17K (very low)
-Critical insight: Furniture sells but doesn’t make money
+## Tools & Technologies
 
-6. Sales by Category
-Technology → ~0.84M
-Furniture → ~0.74M
-Office Supplies → ~0.62M
+| Tool            | Purpose                                      |
+|-----------------|----------------------------------------------|
+| SQL (MySQL)     | Data cleaning, transformation, and analysis  |
+| Power BI        | Dashboard development and visualization      |
+| Excel / CSV     | Raw data source                              |
+| DAX (Power BI)  | KPI calculations and custom metrics          |
 
-7. Category Contribution (Donut Chart)
-Technology → ~36.78%
-Furniture → ~32.49%
-Office Supplies → ~30.73%
+---
 
-8. Geographic Map
-Global distribution of sales
-Adds spatial understanding
+## Process Walkthrough
 
-Insights
-West region is the top performer (~0.73M sales)
-Furniture is underperforming in profit (~17K) despite decent sales
-Technology is the most profitable category (~145K)
-Office Supplies dominates in quantity (22K units) but not in profit
-Sales trend shows fluctuations, not steady growth
-MoM growth is almost flat (0.04) → business stagnation risk
+### 1. Data Cleaning & Preparation (SQL)
 
-Business Impact
-This dashboard enables:
-Better regional targeting
-Focus on high-margin categories (Technology)
-Identification of loss-making segments (Furniture)
-Improved decision-making with real-time metrics
-Monitoring of growth and performance trends
+Before any analysis, the raw dataset was cleaned and standardized:
 
-Recommendations
-Cut the nonsense with Furniture — margins are terrible. Either:
-Increase pricing
-Reduce cost
-Or stop pushing it aggressively
-Double down on Technology — it’s clearly your money-maker
-West region is working → replicate that strategy in other regions
-Office Supplies sells a lot but doesn’t translate to profit
-→ optimize pricing or bundles
-Growth is basically flat
-→ run campaigns, offers, or A/B test pricing strategies
+- Removed null values and inconsistent records
+- Standardized date formats using `DATE_FORMAT`
+- Structured the data into a reliable, analysis-ready format
 
- Tools Used
-SQL → Data cleaning & transformation
-Power BI / Excel (Dashboarding) → Visualization
-Data Analysis Techniques:
-Aggregation
-Trend Analysis
-Category Contribution
-KPI Tracking
+### 2. Data Analysis (SQL)
+
+**Sales Trends**
+Monthly revenue was analyzed to identify growth patterns and seasonal fluctuations across the reporting period.
+
+**Top Products**
+Extracted the top 10 products by revenue and identified high-performing SKUs contributing most to overall sales.
+
+**Customer Analysis**
+Customers were ranked by total spend and segmented into two groups — repeat buyers and one-time purchasers — to better understand retention and purchasing behavior.
+
+**Category Performance**
+Revenue and quantity sold were analyzed across product categories and sub-categories, with a focus on comparing high-volume segments against high-margin ones.
+
+**Profitability Insights**
+Categories were evaluated for profit efficiency — surfacing cases where high revenue did not translate into meaningful profit, and where low-volume products quietly delivered strong margins.
+
+**SQL Techniques Applied**
+- Window functions — `RANK()` and cumulative revenue calculations
+- Aggregations — `SUM`, `AVG`, `COUNT`
+- `CASE` statements for customer segmentation logic
+- Grouping and sorting for business-level summaries
+
+### 3. KPI Metrics
+
+| Metric                    | Value      |
+|---------------------------|------------|
+| Total Sales               | $2.27M     |
+| Total Profit              | $282.86K   |
+| Total Quantity Sold       | 37K units  |
+| Average Order Value (AOV) | $460.85    |
+| YTD Sales                 | $724.99K   |
+| Month-over-Month Growth   | 0.04%      |
+
+### 4. Dashboard Development (Power BI)
+
+An interactive Power BI dashboard was built to make the analysis accessible to non-technical stakeholders. It includes:
+
+- Region-wise sales and profit breakdown
+- Sales trend over time
+- Category-wise performance comparison
+- Profit analysis by product category
+- Geographic visualization via map view
+- KPI summary cards for quick reference
+- Dynamic filters for Year, Region, and Category
+
+---
+
+## Key Insights
+
+- Technology is the highest-performing category by both revenue and profit margin.
+- Office Supplies shows strong demand but consistently low profit — pointing to a pricing or cost structure issue.
+- The West region leads overall performance, while the South lags behind with no clear recovery trend.
+- Sales growth across the period is inconsistent, with no strong or sustained upward trajectory.
+- A relatively small segment of customers accounts for a significant portion of total revenue.
+
+---
+
+## Business Recommendations
+
+- Prioritize the Technology category for revenue growth initiatives — it consistently delivers results.
+- Address the margin problem in Office Supplies through pricing adjustments or supplier cost review.
+- Conduct a focused investigation into the South region to understand root causes and apply strategies that have worked in stronger-performing regions.
+- Develop targeted retention programs for high-value customers to protect and grow that revenue base.
+- Revisit the discount strategy — the data suggests that higher discounts do not reliably lead to proportionally higher revenue.
+
+---
+
+## Impact
+
+This project demonstrated how structured data analysis can replace guesswork with clarity. Key outcomes include:
+
+- A reliable foundation for data-driven decision making across the business
+- Identification of profit leakages within high-volume product categories
+- A clearer understanding of customer segments and their relative value
+- A scalable, reusable dashboard that can support ongoing business monitoring
